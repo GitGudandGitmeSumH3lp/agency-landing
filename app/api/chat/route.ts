@@ -2,41 +2,50 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { message, sessionId } = await request.json();
-    const N8N_WEBHOOK_URL = process.env.N8N_CHAT_WEBHOOK;
+    const body = await request.json();
+    const { message, sessionId } = body;
 
-    if (!N8N_WEBHOOK_URL) {
-      return NextResponse.json({ error: "Missing Webhook URL" }, { status: 500 });
+    // DEBUG: Print to Vercel Logs to see if we get inputs
+    console.log("Chat API called with:", { sessionId, messageSnippet: message?.substring(0, 10) });
+
+    // 1. Check for the Secret URL
+    const n8nUrl = process.env.N8N_CHAT_WEBHOOK_URL;
+    
+    if (!n8nUrl) {
+      // This will show up in Vercel Logs as the specific error
+      console.error("CRITICAL ERROR: N8N_CHAT_WEBHOOK_URL is not set in Vercel Environment Variables.");
+      return NextResponse.json(
+        { error: "Server misconfiguration: Missing Webhook URL" }, 
+        { status: 500 }
+      );
     }
 
-
-    const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
+    // 2. Send to n8n
+    const response = await fetch(n8nUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chatInput: message, sessionId }),
+      body: JSON.stringify({ message, sessionId }),
     });
 
-    // Read the text first, THEN try to parse JSON
-    const textData = await n8nResponse.text(); 
- 
-
-    if (!textData) {
-      return NextResponse.json({ response: "Error: n8n returned empty response." });
+    // 3. Handle n8n Errors
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("n8n returned an error:", response.status, errorText);
+      return NextResponse.json(
+        { error: "AI Service Unavailable" },
+        { status: 502 }
+      );
     }
 
-    try {
-      const data = JSON.parse(textData);
-      // Handle the case where n8n returns { output: "..." } vs just { "..." }
-      const aiResponse = data.output || data.response || JSON.stringify(data);
-      return NextResponse.json({ response: aiResponse });
-    } catch (e) {
-      // If n8n returned HTML or plain text (not JSON)
-      console.error("JSON Parse Error:", e);
-      return NextResponse.json({ response: "Error: Received invalid JSON from n8n." });
-    }
+    // 4. Return success
+    const data = await response.json();
+    return NextResponse.json(data);
 
-  } catch (error) {
-    console.error("Chat API Error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  } catch (error: any) {
+    console.error("Unhandled API Error:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error", details: error.message },
+      { status: 500 }
+    );
   }
 }
