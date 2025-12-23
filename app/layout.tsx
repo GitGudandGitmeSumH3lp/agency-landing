@@ -9,8 +9,37 @@ import ChatWidget from "@/components/ui/ChatWidget";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Agency.io | Modern Marketing Solutions",
-  description: "Growing brands through digital excellence.",
+  title: {
+    default: "Tidal Solutions | Digital Marketing Agency",
+    template: "%s | Tidal Solutions", // Creates "Services | Tidal Solutions" automatically
+  },
+  description: "We build data-driven marketing strategies that turn ripples into waves. SEO, Content, and Paid Ads for modern brands.",
+  keywords: ["Digital Marketing", "SEO Agency", "Web Design", "Next.js Developers"],
+  openGraph: {
+    title: "Tidal Solutions | Digital Marketing Agency",
+    description: "Scale your business with precision, creativity, and modern technology.",
+    url: "https://tidal-agency.vercel.app", // We will update this after deployment
+    siteName: "Tidal Solutions",
+    images: [
+      {
+        url: "/og-image.jpg", // You will need to add this image to /public later
+        width: 1200,
+        height: 630,
+        alt: "Tidal Solutions Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tidal Solutions",
+    description: "Scale your business with precision.",
+    images: ["/og-image.jpg"], // Same image
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

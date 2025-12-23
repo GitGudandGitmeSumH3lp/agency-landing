@@ -14,10 +14,17 @@ export async function POST(request: Request) {
       );
     }
 
-    // 3. Define your n8n Webhook URL
-    // REPLACE 'YOUR_WEBHOOK_URL' below with your actual n8n Production URL
-    // Best Practice: Store this in a .env file later (e.g., process.env.N8N_WEBHOOK_URL)
-    const N8N_WEBHOOK_URL = "https://carloverina.app.n8n.cloud/webhook-test/8be9e79d-aa63-483b-9d4a-206c0ef1ff49";
+    // Webhook URL
+
+    const N8N_WEBHOOK_URL = process.env.N8N_CONTACT_WEBHOOK_URL;
+
+        if (!N8N_WEBHOOK_URL) {
+      console.error("Server Error: Missing N8N_CONTACT_WEBHOOK_URL in environment variables.");
+      return NextResponse.json(
+        { error: "Internal Server Configuration Error" },
+        { status: 500 }
+      );
+    }
 
     // 4. Send data to n8n
     const n8nResponse = await fetch(N8N_WEBHOOK_URL, {

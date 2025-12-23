@@ -9,7 +9,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing Webhook URL" }, { status: 500 });
     }
 
-    console.log("Sending to n8n:", N8N_WEBHOOK_URL); // Debug Log 1
 
     const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
@@ -19,7 +18,7 @@ export async function POST(request: Request) {
 
     // Read the text first, THEN try to parse JSON
     const textData = await n8nResponse.text(); 
-    console.log("n8n Raw Response:", textData); // Debug Log 2
+ 
 
     if (!textData) {
       return NextResponse.json({ response: "Error: n8n returned empty response." });

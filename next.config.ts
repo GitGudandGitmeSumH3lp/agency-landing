@@ -6,8 +6,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "placehold.co",
+        port: "",
+        pathname: "/**", // Allows all paths from this domain
       },
     ],
+  },
+  // Optional: Automatically remove console.* logs in production to keep it clean
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
   },
 };
 
