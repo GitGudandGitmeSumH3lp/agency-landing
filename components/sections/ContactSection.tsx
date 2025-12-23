@@ -23,8 +23,10 @@ export default function ContactSection() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Email Us</h3>
-                  <p className="text-gray-600">hello@agency.io</p>
+                  <h3 className="font-semibold text-gray-900">Message Us</h3>
+                  <p className="text-gray-600">
+                    Have a question? Start a conversation using the chat bubble in the right corner.
+                  </p>
                 </div>
               </div>
 

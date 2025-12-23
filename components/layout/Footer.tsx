@@ -16,7 +16,7 @@ export default function Footer() {
                 <Rocket size={20} />
               </div>
               <span className="font-bold text-xl tracking-tight">
-                Agency.io
+                Tidals.io
               </span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-6">

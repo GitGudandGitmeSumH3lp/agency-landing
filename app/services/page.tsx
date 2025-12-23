@@ -1,5 +1,6 @@
 import PageHeader from "@/components/layout/PageHeader";
 import { getAllServices } from "@/lib/data";
+import Link from "next/link";
 import { Search, PenTool, BarChart3, Code, CheckCircle2 } from "lucide-react";
 
 // Helper to map string names to Icon components
@@ -72,9 +73,12 @@ export default function ServicesPage() {
           <p className="text-gray-600 mb-8 text-lg">
             Schedule a free consultation with our strategy team. We'll analyze your current setup and recommend the best path forward.
           </p>
-          <button className="bg-blue-600 text-white px-8 py-3.5 rounded-full font-medium hover:bg-blue-700 transition-colors">
-            Book Free Consultation
-          </button>
+        <Link
+        href="/contact"
+        className="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-3.5 rounded-full font-medium hover:bg-blue-700 transition-colors"
+        >
+        Book Free Consultation
+        </Link>
         </div>
       </section>
     </>

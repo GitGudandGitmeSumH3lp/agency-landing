@@ -34,26 +34,31 @@ export interface Service {
 
 // --- MOCK DATA ---
 
+// lib/data.ts
+
 export const projects: Project[] = [
   {
     id: "1",
     title: "Neon FinTech App",
     category: "App Development",
-    image: "/api/placeholder/600/400", // We will use placeholders for now
+    // 600x400 image, Dark Blue background, White text
+    image: "https://placehold.co/600x400/1e3a8a/ffffff?text=Neon+FinTech",
     description: "A complete banking solution redesign focusing on Gen Z users.",
   },
   {
     id: "2",
     title: "EcoEats Branding",
     category: "Branding",
-    image: "/api/placeholder/600/400",
+    // Green background
+    image: "https://placehold.co/600x400/065f46/ffffff?text=EcoEats+Brand",
     description: "Sustainable food delivery service identity and packaging.",
   },
   {
     id: "3",
     title: "Nexus Dashboard",
     category: "Web Design",
-    image: "/api/placeholder/600/400",
+    // Purple background
+    image: "https://placehold.co/600x400/581c87/ffffff?text=Nexus+Dashboard",
     description: "SaaS analytics dashboard with real-time data visualization.",
   },
 ];
