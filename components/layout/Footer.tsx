@@ -36,10 +36,10 @@ export default function Footer() {
                 Services
               </h3>
               <ul className="space-y-3">
-                <FooterLink href="#">SEO Optimization</FooterLink>
-                <FooterLink href="#">Content Strategy</FooterLink>
-                <FooterLink href="#">Web Development</FooterLink>
-                <FooterLink href="#">Social Media</FooterLink>
+                <FooterLink href="/services">SEO Optimization</FooterLink>
+                <FooterLink href="/services">Content Strategy</FooterLink>
+                <FooterLink href="/services">Web Development</FooterLink>
+                <FooterLink href="/services">Social Media</FooterLink>
               </ul>
             </div>
             <div>
@@ -47,10 +47,8 @@ export default function Footer() {
                 Company
               </h3>
               <ul className="space-y-3">
-                <FooterLink href="#">About Us</FooterLink>
-                <FooterLink href="#">Careers</FooterLink>
-                <FooterLink href="#">Press</FooterLink>
-                <FooterLink href="#">Contact</FooterLink>
+                <FooterLink href="/about">About Us</FooterLink>
+                <FooterLink href="/career">Careers</FooterLink>
               </ul>
             </div>
             <div>
@@ -58,9 +56,8 @@ export default function Footer() {
                 Legal
               </h3>
               <ul className="space-y-3">
-                <FooterLink href="#">Privacy Policy</FooterLink>
-                <FooterLink href="#">Terms of Service</FooterLink>
-                <FooterLink href="#">Cookie Policy</FooterLink>
+                <FooterLink href="/privacy">Privacy Policy</FooterLink>
+                <FooterLink href="/terms">Terms of Service</FooterLink>
               </ul>
             </div>
           </div>

@@ -36,7 +36,7 @@ export default function HeroSection() {
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
-            href="#work"
+            href="/work"
             className="inline-flex items-center justify-center text-slate-300 hover:text-white px-8 py-3.5 rounded-full text-base font-medium border border-slate-700 hover:border-slate-500 transition-all duration-200"
           >
             View Our Work

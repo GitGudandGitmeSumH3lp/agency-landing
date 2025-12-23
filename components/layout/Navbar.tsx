@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Rocket } from "lucide-react"; 
+import { usePathname, useRouter } from "next/navigation"; // <--- Import these
+import { Menu, X, Rocket } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // Hooks for navigation logic
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navLinks = [
     { name: "Services", href: "/services" },
@@ -14,19 +19,35 @@ export default function Navbar() {
     { name: "Blog", href: "/blog" },
   ];
 
+  // Logic: If on home, scroll. If elsewhere, go home then scroll.
+  const handleStartProject = () => {
+    setIsOpen(false); // Close mobile menu if open
+    
+    if (pathname === "/") {
+      // We are already on home, just find the section and scroll
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // We are on another page, navigate to home with the hash
+      router.push("/#contact");
+    }
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo Area */}
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white">
               <Rocket size={20} />
             </div>
             <span className="font-bold text-xl tracking-tight text-gray-900">
               Agency<span className="text-blue-600">.io</span>
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">
@@ -34,12 +55,21 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-600 hover:text-blue-600 font-medium transition-colors text-sm"
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href 
+                    ? "text-blue-600" 
+                    : "text-gray-600 hover:text-blue-600"
+                }`}
               >
                 {link.name}
               </Link>
             ))}
-            <button className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-all">
+            
+            {/* Updated Button */}
+            <button 
+              onClick={handleStartProject}
+              className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-all"
+            >
               Start Project
             </button>
           </div>
@@ -71,7 +101,11 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-4">
-              <button className="w-full bg-black text-white px-5 py-3 rounded-lg font-medium">
+              {/* Updated Mobile Button */}
+              <button 
+                onClick={handleStartProject}
+                className="w-full bg-black text-white px-5 py-3 rounded-lg font-medium"
+              >
                 Start Project
               </button>
             </div>

@@ -65,13 +65,25 @@ export const posts: Post[] = [
     slug: "future-of-seo-2025",
     date: "Dec 15, 2024",
     excerpt: "Why AI answers are changing the way we structure content.",
+    content: `
+      <p>Search Engine Optimization is undergoing a seismic shift. With the rise of AI-generated answers (SGE), the traditional "10 blue links" are being pushed further down the page.</p>
+      <h3>The Rise of Zero-Click Searches</h3>
+      <p>Users are getting their answers directly on the search results page. This means your content needs to be optimized for "Answer Engine Optimization" (AEO) rather than just keywords.</p>
+      <h3>What this means for your business</h3>
+      <p>Focus on deep, authoritative content that AI cannot easily replicate. Experience and unique data are your new best friends.</p>
+    `,
   },
   {
     id: "2",
     title: "Minimalism in Web Design",
     slug: "minimalism-web-design",
     date: "Nov 22, 2024",
-    excerpt: "How whitespace increases conversion rates.",
+    excerpt: "How whitespace increases conversion rates and reduces cognitive load.",
+    content: `
+      <p>Minimalism isn't just an aesthetic choice; it's a functional one. By removing the clutter, you guide the user's eye exactly where you want it to go.</p>
+      <h3>Cognitive Load Theory</h3>
+      <p>Every element on a page requires brain power to process. When you reduce visual noise, you make it easier for users to make decisions—like clicking that "Buy Now" button.</p>
+    `,
   },
 ];
 
@@ -139,4 +151,9 @@ export function getAllTeam() {
 
 export function getAllServices() {
   return services;
+
+}
+
+export function getPostBySlug(slug: string) {
+  return posts.find((post) => post.slug === slug);
 }
