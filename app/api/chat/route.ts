@@ -5,6 +5,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { message, sessionId } = body;
 
+    // DEBUG: List all environment variables Vercel can see (Keys only)
+    console.log("Available Env Vars:", Object.keys(process.env));
+
     // DEBUG: Print to Vercel Logs to see if we get inputs
     console.log("Chat API called with:", { sessionId, messageSnippet: message?.substring(0, 10) });
 
