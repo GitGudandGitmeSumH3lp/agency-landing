@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; 
 import { Menu, X, Rocket } from "lucide-react";
+import Logo from '@/components/ui/Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,18 +37,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo Area */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white">
-              <Rocket size={20} />
-            </div>
-            <span className="font-bold text-xl tracking-tight text-gray-900">
-              Agency<span className="text-blue-600">.io</span>
-            </span>
-          </Link>
+<nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between items-center h-16">
+      {/* Logo Area - Using Component */}
+      <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+        <Logo className="w-8 h-8" textClassName="text-xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" />
+      </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">

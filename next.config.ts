@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**", // Allows all paths from this domain
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com", 
+      },
     ],
   },
   // Optional: Automatically remove console.* logs in production to keep it clean
